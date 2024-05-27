@@ -251,3 +251,27 @@ You can view your wallet balance with the following command:
 ```
 initiad q bank balances $(initiad keys show $WALLET_NAME -a)
 ```
+
+When you have collected enough faucets, now copy the following code in notepad and type your node name in front of Moniker and then run the command.
+
+By executing this command, your validator will be created and your faucet will be delegated to the validator.
+
+```
+initiad tx mstaking create-validator \
+  --amount=5000000uinit \
+  --pubkey=$(initiad tendermint show-validator) \
+  --moniker=YOUR_MONIKER_NAME \
+  --chain-id=$CHAIN_ID \
+  --commission-rate=0.05 \
+  --commission-max-rate=0.10 \
+  --commission-max-change-rate=0.01 \
+  --from=wallet \
+  --identity="" \
+  --website="-" \
+  --details="-" \
+  --node=http://localhost:26657 \
+  --gas-adjustment 1.4 \
+  --gas auto \
+  --gas-prices 0.15uinit \
+  -y
+```
