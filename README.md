@@ -215,3 +215,39 @@ cp ~/.initia/priv_validator_state.json  ~/.initia/data/priv_validator_state.json
 ```
 sudo systemctl restart initiad && sudo journalctl -u initiad -f -o cat
 ```
+
+Press ctrl+c to close this window. </br>
+Node is now running.</br>
+You have to wait until it is completely synced with the blocks on the network.</br>
+You can check the sync status of your node by running the following command:
+
+```
+initiad status | jq
+```
+
+When the status changes to false, it means that the sync is complete. </br>
+Now it's time to build the wallet and validator.</br>
+
+If you want to create a new wallet, run the following code:
+
+```
+initiad keys add $WALLET_NAME
+```
+
+If you want to recovery your previous wallet, run the following code:
+
+```
+initiad keys add --recover $WALLET_NAME
+```
+
+And then enter your seed phrase. </br></br>
+
+Now get the faucet through the following address and deposit to the relevant wallet address:
+
+<a href="https://faucet.testnet.initia.xyz">https://faucet.testnet.initia.xyz</a> </br>
+
+You can view your wallet balance with the following command:
+
+```
+initiad q bank balances $(initiad keys show $WALLET_NAME -a)
+```
